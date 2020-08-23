@@ -1,12 +1,8 @@
 """ Fichier de configuration """
 
 # API informations
-Authentication = "5ea807a9-b4a4-4aa4-847a-446ba5bc4810"
-url = "https://isitarealemail.com/api/email/validate"
-
+Authentication = "fb13a2dc029e402cf3e0fbfa9fa48aec"
+url="https://apilayer.net/api/check?access_key="+Authentication+"&email="
 
 #Table des TLD's à tester / Rajoutez des TLDS au besoins
-tld = ['.com','.fr','.net']
-
-
-
+tld = ['.com']

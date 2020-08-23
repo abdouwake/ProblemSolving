@@ -8,7 +8,7 @@ j = 0
 
 # Pour le fichier CSV
 tableau = []
-entetes = ['nom', 'prenom', 'domaine', 'mails', 'potentiels_mails']
+entetes = ['nom', 'prenom', 'domaine', 'mails']
 
 # Lecture du fichier et récupération des données
 df = pd.read_csv("data.csv")
@@ -27,19 +27,16 @@ for i in range(0, len(firstNames)):
 
     adresses = generer_mails(Pretraitements(firstNames[i]), Pretraitements((lastNames[i])), Pretraitements(domaines[i]))
     adresses_valides = ''
-    potentiels_adresses = ''
 
     for mail in adresses:
         result = tester_adresse(mail)
-        if (result == 'valid'):
+        if (result == True):
             adresses_valides = adresses_valides + ' - ' + mail
-        elif (result == 'unknown'):
-            potentiels_adresses = potentiels_adresses + ' - ' + mail
+
 
     ligne.append(adresses_valides)
-    ligne.append(potentiels_adresses)
 
-    if (adresses_valides != '' or potentiels_adresses != ''):
+    if (adresses_valides != ''):
         dataframe.loc[i] = ligne
     else:
         ligne_fail = []

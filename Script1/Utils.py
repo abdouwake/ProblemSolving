@@ -1,5 +1,4 @@
 import whois
-from Script1.Config import Authentication
 from Script1.Config import url
 from Script1.Config import tld
 import requests
@@ -55,9 +54,9 @@ def generer_mails(firstName, lastName, domaine):
     resultatMails = []
     for item in get_valide_domaines(domaine):
         Tab_formats = [
+            firstName[0] + lastName,
             firstName + lastName,
             lastName + firstName,
-            firstName[0] + lastName,
             lastName[0] + firstName,
             firstName + '_' + lastName,
             lastName + '_' + firstName,
@@ -80,8 +79,7 @@ def generer_mails(firstName, lastName, domaine):
 
 
 def tester_adresse(adresse):
-    response = requests.get(url,
-                            params={'email': adresse},
-                            headers={'Authentication': Authentication}
-                            )
-    return (response.json()['status'])
+    response = requests.get(url+adresse)
+    response=response.json()
+    print(response)
+    return (response['format_valid'])

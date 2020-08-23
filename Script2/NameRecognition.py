@@ -1,8 +1,11 @@
-import time
-
 import pandas as pd
 import numpy as np
 from fuzzywuzzy import fuzz
+
+# indiquez ici le répertoir du fichier ainsi que son nom
+FILE = "./testfile.csv"
+inputFile = pd.read_csv(FILE)
+
 
 # ---------------------------------
 def supprime_accent(ligne):
@@ -69,8 +72,6 @@ def check(prenom):
     return result
 
 
-inputFile = pd.read_csv("./testfile.csv")
-
 taille_max = len(inputFile)
 
 for i, row in inputFile.iterrows():
@@ -78,13 +79,13 @@ for i, row in inputFile.iterrows():
     rez = check(value)
 
     if rez == 'f':
-        rez=("Feminin")
+        rez = ("Feminin")
     elif rez == 'm':
-        rez=("Masculin")
+        rez = ("Masculin")
     elif 'f' in rez and 'm' in rez:
-        rez=('Mixte')
+        rez = ('Mixte')
     else:
-        rez=('Introuvable')
+        rez = ('Introuvable')
     inputFile.at[i, 'Sexe'] = rez
     i = i + 1
 
