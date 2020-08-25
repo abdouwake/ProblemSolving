@@ -81,5 +81,4 @@ def generer_mails(firstName, lastName, domaine):
 def tester_adresse(adresse):
     response = requests.get(url+adresse)
     response=response.json()
-    print(response)
-    return (response['format_valid'])
+    return (response['smtp_check'])
